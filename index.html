@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced To-Do List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <main class="todo-container">
+        <header>
+            <h1>Todo List</h1>
+        </header>
+        
+        <form class="todo-form">
+            <div class="form-inputs">
+                <input type="text" class="todo-input" placeholder="Task Title...">
+                <input type="date" class="todo-date-input">
+            </div>
+            <textarea class="todo-description-input" placeholder="Add a description..."></textarea>
+            
+            <span class="error-message"></span>
+
+            <button class="add-button" type="submit">
+                <i class="fas fa-plus-circle"></i> Add Task
+            </button>
+        </form>
+
+        <div class="todo-list-wrapper">
+            <div class="controls">
+                <button class="history-btn">
+                    <i class="fas fa-history"></i> View History
+                </button>
+                <div class="filter-container">
+                    <select name="todos" class="filter-todo">
+                        <option value="all">All Tasks</option>
+                        <option value="completed">Completed</option>
+                        <option value="incomplete">Incomplete</option>
+                    </select>
+                </div>
+            </div>
+            <ul class="todo-list">
+                </ul>
+        </div>
+    </main>
+
+    <div id="historyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Activity History</h2>
+            <ul id="historyList" class="history-list">
+                </ul>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>

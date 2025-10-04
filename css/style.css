@@ -1,0 +1,276 @@
+/* ======================================== */
+/* iOS NOTES UI THEME             */
+/* ======================================== */
+
+/* General Styling & Variables */
+:root {
+    --ios-bg: #121212; /* Latar belakang utama yang sangat gelap */
+    --ios-list-bg: #1C1C1E; /* Latar belakang untuk input dan elemen list */
+    --ios-text-primary: #FFFFFF; /* Teks utama (judul tugas) */
+    --ios-text-secondary: #8E8E93; /* Teks sekunder (tanggal, deskripsi) */
+    --ios-accent: #FFCC00; /* Warna kuning khas iOS Notes */
+    --ios-separator: #38383A; /* Warna garis pemisah */
+    --ios-red: #FF3B30;
+    --ios-green: #34C759;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--ios-bg);
+    color: var(--ios-text-primary);
+    display: flex;
+    justify-content: center;
+    padding-top: 5vh;
+}
+
+/* Main Container */
+.todo-container {
+    width: 95%;
+    max-width: 650px;
+    background-color: var(--ios-bg); /* Menyatu dengan body */
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--ios-accent);
+    text-align: left;
+    margin-bottom: 25px;
+    padding: 0 10px;
+}
+
+/* Form Styling */
+.todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--ios-list-bg);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.form-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.todo-input, .todo-date-input, .todo-description-input {
+    width: 100%;
+    padding: 10px 0; /* Hanya padding atas-bawah */
+    border: none;
+    border-bottom: 1px solid var(--ios-separator);
+    background-color: transparent; /* Transparan */
+    color: var(--ios-text-primary);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+}
+.todo-input:focus, .todo-date-input:focus, .todo-description-input:focus {
+    border-color: var(--ios-accent);
+}
+
+.todo-description-input {
+    resize: none;
+    min-height: 40px;
+}
+
+.todo-input::placeholder, .todo-description-input::placeholder {
+    color: var(--ios-text-secondary);
+}
+
+.error-message {
+    color: var(--ios-red);
+    font-size: 0.9rem;
+    text-align: left;
+    min-height: 1.2rem;
+    padding-left: 5px;
+}
+
+.add-button {
+    background-color: var(--ios-accent);
+    color: var(--ios-bg);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+.add-button:hover {
+    opacity: 0.8;
+}
+
+/* Controls, Filter & History Button */
+.controls {
+    display: flex;
+    justify-content: flex-end; /* Pindahkan ke kanan */
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 0 10px;
+    gap: 20px;
+}
+
+.history-btn {
+    background: none;
+    border: none;
+    color: var(--ios-accent);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.filter-container select {
+    appearance: none;
+    outline: none;
+    border: none;
+    padding: 8px 10px;
+    background-color: var(--ios-list-bg);
+    color: var(--ios-text-primary);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Todo List Styling */
+.todo-list-wrapper {
+    background-color: var(--ios-list-bg);
+    border-radius: 12px;
+}
+
+.todo-list {
+    list-style: none;
+}
+
+.todo {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid var(--ios-separator);
+    transition: background-color 0.2s ease;
+}
+
+.todo:last-child {
+    border-bottom: none; /* Hilangkan border pada item terakhir */
+}
+
+.todo-item {
+    flex: 1;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.todo-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--ios-text-primary);
+}
+
+.todo-date, .todo-description {
+    font-size: 0.9rem;
+    color: var(--ios-text-secondary);
+    margin-top: 4px;
+}
+
+.todo-description {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.todo-item.expanded .todo-description {
+    max-height: 100px;
+}
+
+/* Completed State */
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: var(--ios-text-secondary);
+}
+
+/* Buttons inside Todo Item */
+.complete-btn, .trash-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem; /* Perbesar ikon */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    padding: 0;
+}
+
+.complete-btn {
+    color: var(--ios-separator); /* Warna lingkaran kosong */
+    /* Meniru bentuk lingkaran checkmark */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--ios-separator);
+    border-radius: 50%;
+}
+.complete-btn .fa-check-circle {
+    display: none; /* Sembunyikan ikon FontAwesome */
+}
+
+/* Style untuk status completed */
+.todo-item.completed + .complete-btn {
+    background-color: var(--ios-accent);
+    border-color: var(--ios-accent);
+}
+/* Menampilkan centang putih di dalam lingkaran kuning */
+.todo-item.completed + .complete-btn::after {
+    content: '\2713'; /* Simbol centang unicode */
+    color: var(--ios-bg);
+    font-weight: bold;
+}
+
+
+.trash-btn {
+    color: var(--ios-red);
+    margin-left: 15px;
+}
+
+.complete-btn:hover, .trash-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Modal Styling (sudah cukup baik, hanya sedikit penyesuaian) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+}
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: #2C2C2E;
+    padding: 25px;
+    border-radius: 14px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
